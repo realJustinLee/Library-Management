@@ -1,12 +1,9 @@
-# library
-The homework of the JAVA Course
+# 基本情况
 
 开发工具：IDEA
 服务器:tomcat
 前端：html5+css+js(Jquery)
 后端：java
-版本控制：git
-适应设备：PC
 
 #技术栈
 （后）
