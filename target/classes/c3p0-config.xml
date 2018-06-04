@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<c3p0-config>
+    <default-config>
+        <property name="jdbcUrl">jdbc:mysql://admin.lixin-computer.com:3306/library?useUnicode=true&amp;characterEncoding=utf8</property>
+        <property name="driverClass">com.mysql.jdbc.Driver</property>
+        <property name="user">javaee</property>
+        <property name="password">javaee</property>
+        <property name="acquireIncrement">3</property>
+        <property name="initialPoolSize">100</property>
+        <property name="minPoolSize">2</property>
+        <property name="maxPoolSize">100</property>
+    </default-config>
+</c3p0-config>

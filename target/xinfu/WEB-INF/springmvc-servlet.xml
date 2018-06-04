@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+    <!-- 开启springMVC的注解驱动，使得url可以映射到对应的controller -->
+    <mvc:annotation-driven />
+
+    <!-- 配置自定扫描的包 -->
+    <context:component-scan base-package="com.library.controller"></context:component-scan>
+    <context:component-scan base-package="com.library.config"></context:component-scan>
+    <context:component-scan base-package="com.library.service"></context:component-scan>
+    <context:component-scan base-package="com.library.dao"></context:component-scan>
+
+    <!-- 配置静态资源:DispatcherServlet不会拦截以/static开头的所有请求路径，并当作静态资源交由Servlet处理 -->
+    <!--
+    *   location元素表示webapp目录下的statics包下的所有文件
+    -->
+    <mvc:resources location="/statics/" mapping="/statics/**" />
+
+    <bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+        <property name="prefix" value="/WEB-INF/templates/library/" />
+        <property name="suffix" value=".html" />
+        <property name="order" value="1" />
+        <property name="templateMode" value="HTML5" />
+        <!--解决中文乱码问题-->
+        <property name="characterEncoding" value="UTF-8"/>
+    </bean>
+
+    <!--配置MultipartResolver：文件上传-->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 上传文件大小上限，单位为字节（10MB） -->
+        <property name="maxUploadSize">
+            <value>10485760</value>
+        </property>
+        <!-- 请求的编码格式，必须和jSP的pageEncoding属性一致，以便正确读取表单的内容，默认为ISO-8859-1 -->
+        <property name="defaultEncoding">
+            <value>UTF-8</value>
+        </property>
+    </bean>
+
+    <!--配置TemplateEngine-->
+    <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+        <property name="templateResolver" ref="templateResolver" />
+    </bean>
+
+    <!--视图解析-->
+    <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="templateEngine" />
+        <!--解决中文乱码问题-->
+        <property name="characterEncoding" value="UTF-8"/>
+        <!--加入以下property会报错-->
+        <!--<property name="viewNames" value="*.html,*.xhtml" />-->
+    </bean>
+</beans>

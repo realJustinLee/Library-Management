@@ -1,0 +1,39 @@
+
+*{-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
+html,body{padding: 0; margin: 0; font-family: 14px; font-family: "微软雅黑";}
+
+.ce-pack-end{display: -webkit-box; -webkit-box-orient: vertical; -webkit-box-pack:center; position: absolute; top:0; left: 0;}
+
+.luck-back{background-image: url(../img/back2.jpg); background-size: cover; background-position: top center; position: absolute; height: 100%; width: 100%; color: #fff;}
+
+.luck-content{position: absolute; top: 20%; bottom:20%; left:20%; right:20%; background: rgba(0,0,0,.5); padding: 20px; border-radius: 5px; padding-right:260px;}
+
+.luck-user{position: absolute; right: 20px; top: 20px; bottom: 20px; width: 240px; background-color: rgba(255,255,255,.2); border-radius: 5px;}
+.luck-user-list{list-style-type: none; padding:0 20px; margin: 0; overflow-y:scroll; position: absolute; top: 50px; bottom: 70px; width: 100%;}
+.luck-user-list>li{margin-top: 10px; position: relative;}
+.luck-user-list>li div.portrait{height: 30px; width: 30px; border-radius: 5px; background-position: center; background-size: cover;}
+.luckuserName{line-height: 30px; position: absolute; top: 0; left:40px; right: 0;}
+.luck-user-title{position: absolute; width: 90%; display: block; text-align: center; line-height: 40px; left: 5%; color: #f5b43a; font-weight: bold;}
+.luck-user-title::before{position: absolute; content: ""; top: 100%; left: 0; width: 100%; background:-webkit-linear-gradient(left,rgba(248,215,59,0),#f0d03a,rgba(248,215,59,0)); height:1px;}
+
+.luck-user-btn{position: absolute; bottom: 20px; left: 5%; width: 90%; text-align: center; line-height: 40px; cursor: pointer;}
+.luck-user-btn>a{background: #f29807; width: 100%; line-height: 40px; display: block; border-radius: 5px; text-decoration: none; color: #fff;}
+.luck-user-btn>a:hover{background: #fcb842;}
+
+.luck-title{text-align: center; margin-bottom: 20px;}
+
+.luck-content-btn{width: 100%; text-align: center; line-height: 40px; padding-top: 20px; overflow: hidden;}
+.luck-content-btn a{background: #f29807; width:150px; text-decoration: none; display: inline-block; color: #fff; text-align: center; margin: 0 10px; cursor: pointer;}
+.luck-content-btn a:hover{background: #fcb842; }
+
+.luck-title{font-size: 20px;}
+
+.slotMachine{ width:200px; height: 200px; display: block; text-align: center; background-color: #ffffff; border-radius: 5px; margin: 0 auto; border:#f5ad18 4px solid; position: relative;}
+.slotMachine .slot{ width:100%; height:100%; background-size: cover; background-position: center; position: absolute;}
+.slotMachine .slot>span{position: absolute; bottom: 0; left: 0; line-height: 50px; text-decoration: center; background-color: rgba(0,0,0,.5); width: 100%;}
+
+::-webkit-scrollbar{width: 10px;  height: 16px;  border-radius: 6px;}
+::-webkit-scrollbar-track{border-radius:6px;  background-color: rgba(255,255,255,.2);}
+::-webkit-scrollbar-thumb{border-radius: 6px;  background-color: #fff;}
+
+.luck-img{width: 100%; padding-top: 100%; background-position: center; background-size: cover;}

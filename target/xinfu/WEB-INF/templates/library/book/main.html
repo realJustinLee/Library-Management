@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>在线图书馆</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/statics/css/book/style.css}"/>
+</head>
+<body>
+<div id="wrap">
+    <!--引入header-->
+    <div th:replace="book/common/header::header"></div>
+    <div class="center_content">
+        <!--左半部分-->
+        <div class="left_content">
+            <div class="title">
+                <span class="title_icon">
+                    <img th:src="@{/statics/images/book/bullet1.gif}" alt="" title=""/>
+                </span>
+                <span>特色书籍</span>
+            </div>
+            <!--特色书籍列表-->
+            <div id="special_book_list">
+            </div>
+
+
+            <div class="title">
+                <span class="title_icon">
+                    <img th:src="@{/statics/images/book/bullet2.gif}" alt="" title=""/>
+                </span>
+                <span>最新书籍</span>
+            </div>
+
+            <!--最新书籍-->
+            <div class="new_products" id="new_book_list"></div>
+            <div class="clear"></div>
+        </div><!--end of left content-->
+        <!--引入右半部分-->
+        <div th:replace="book/common/right_content::right_content"></div>
+
+        <div class="clear"></div>
+    </div><!--end of center content-->
+
+    <!--引进footer-->
+    <div th:replace="book/common/footer::footer"></div>
+</div>
+
+<!--引入js-->
+<script th:src="@{/statics/js/common/jquery.min.js}"></script>
+<script th:src="@{/statics/js/common/jquery.cookie.js}"></script>
+<script th:src="@{/statics/js/common/jqPaginator.js}"></script>
+<script th:src="@{/statics/js/common/layui/layui.all.js}"></script>
+<script th:src="@{/statics/js/book/right_content.js}"></script>
+<script th:src="@{/statics/js/book/main.js}"></script>
+</body>
+</html>

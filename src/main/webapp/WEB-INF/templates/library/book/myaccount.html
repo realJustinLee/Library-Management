@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>在线图书馆</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/statics/css/book/style.css}"/>
+</head>
+<body>
+<div id="wrap">
+    <!--引入header-->
+    <div th:replace="book/common/header::header"></div>
+    <!--主体部分-->
+    <div class="center_content">
+        <div class="left_content">
+            <div class="title">
+                <span class="title_icon">
+                    <img th:src="@{/statics/images/book/bullet1.gif}" alt="" title=""/>
+                </span>
+                <span>我的账户</span>
+            </div>
+
+            <div class="feat_prod_box_details">
+
+                <div class="contact_form">
+                    <div class="form_subtitle">我的信息</div>
+                    <form name="register" action="#" id="my_infomation">
+                        <div class="form_row">
+                            <label class="contact"><strong>姓名:</strong></label>
+                            <input type="text" class="contact_input" id="my_info_name" disabled="disabled"/>
+                        </div>
+
+                        <div class="form_row">
+                            <label class="contact"><strong>昵称:</strong></label>
+                            <input type="text" class="contact_input" id="my_info_nickname" disabled="disabled"/>
+                        </div>
+
+                        <div class="form_row">
+                            <label class="contact"><strong>邮箱:</strong></label>
+                            <input type="text" class="contact_input" id="my_info_email" disabled="disabled"/>
+                        </div>
+
+                        <div class="form_row">
+                            <label class="contact"><strong>电话:</strong></label>
+                            <input type="text" class="contact_input" id="my_info_phone" disabled="disabled"/>
+                        </div>
+
+                        <div class="form_row" id="password_div" style="display: none">
+                            <label class="contact"><strong>密码:</strong></label>
+                            <input type="password" class="contact_input" id="my_info_password" disabled="disabled"/>
+                        </div>
+
+                        <div class="form_row">
+                            <input type="button" class="register" value="修改信息" id="change_info_btn"/>
+                            <input type="button" class="register" value="确认" id="my_info_btn"
+                                   style="margin-right: 20px;"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div><!--end of left content-->
+
+        <!--引入右半部分-->
+        <div th:replace="book/common/right_content::right_content"></div>
+        <div class="clear"></div>
+    </div><!--end of center content-->
+
+    <!--引进footer-->
+    <div th:replace="book/common/footer::footer"></div>
+</div>
+<script th:src="@{/statics/js/common/jquery.min.js}"></script>
+<script th:src="@{/statics/js/common/jquery.cookie.js}"></script>
+<script th:src="@{/statics/js/common/layui/layui.all.js}"></script>
+<script th:src="@{/statics/js/book/right_content.js}"></script>
+<script th:src="@{/statics/js/book/myaccount.js}"></script>
+</body>
+</html>

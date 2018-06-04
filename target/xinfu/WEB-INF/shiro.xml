@@ -1,0 +1,59 @@
+<!--
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+
+    &lt;!&ndash; 安全管理器 &ndash;&gt;
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        &lt;!&ndash; 设置自定义realm &ndash;&gt;
+        <property name="realm" ref="shiroDbRealm"/>
+        &lt;!&ndash; 将缓存管理器交给安全管理器 &ndash;&gt;
+        <property name="cacheManager" ref="cacheManager"/>
+    </bean>
+    &lt;!&ndash; 数据库保存的密码是使用MD5算法加密的，所以这里需要配置一个密码匹配对象 &ndash;&gt;
+    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.Md5CredentialsMatcher"></bean>
+
+    &lt;!&ndash;Realm实现&ndash;&gt;
+    <bean id="shiroDbRealm" class="com.library.config.Shiro" >
+        <property name="credentialsMatcher" ref="credentialsMatcher"/>
+    </bean>
+
+    &lt;!&ndash; 缓存管理器 使用Ehcache实现 &ndash;&gt;
+    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:ehcache.xml" />
+    </bean>
+
+    &lt;!&ndash; 数据库保存的密码是使用MD5算法加密的，所以这里需要配置一个密码匹配对象 &ndash;&gt;
+    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <property name="hashAlgorithmName" value="MD5"/>
+    </bean>
+
+    &lt;!&ndash; Shiro的Web过滤器 &ndash;&gt;
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        &lt;!&ndash; Shiro的核心安全接口,这个属性是必须的 &ndash;&gt;
+        <property name="securityManager" ref="securityManager" />
+        &lt;!&ndash; 要求登录时的链接(可根据项目的URL进行替换),非必须的属性,默认会自动寻找Web工程根目录下的"/login.jsp"页面 &ndash;&gt;
+        <property name="loginUrl" value="/user/login.do" />
+        &lt;!&ndash; 登录成功后要跳转的连接 &ndash;&gt;
+        &lt;!&ndash; <property name="successUrl" value="/system/main"/> &ndash;&gt;
+        &lt;!&ndash; 用户访问未对其授权的资源时,所显示的连接 &ndash;&gt;
+        <property name="unauthorizedUrl" value="/user/login.do" />
+        &lt;!&ndash; Shiro连接约束配置,即过滤链的定义 &ndash;&gt;
+        &lt;!&ndash; anon表示此地址不需要任何权限即可访问 &ndash;&gt;
+        &lt;!&ndash; perms[user:query]表示访问此连接需要权限为user:query的用户 &ndash;&gt;
+        &lt;!&ndash; roles[manager]表示访问此连接需要用户的角色为manager &ndash;&gt;
+        &lt;!&ndash; authc 要权限才可访问 &ndash;&gt;
+        <property name="filterChainDefinitions">
+            <value>
+                /user/login.do = anon
+                /cust/list.do = authc
+                /cust/chancelist.do = roles[manager]
+            </value>
+        </property>
+    </bean>
+
+    &lt;!&ndash; 保证实现了Shiro内部lifecycle函数的bean执行 &ndash;&gt;
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+</beans>-->

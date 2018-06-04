@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>在线图书馆</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/statics/css/book/style.css}"/>
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/statics/css/book/lightbox.css}"/>
+
+    <!--<script th:src="@{/statics/js/book/scriptaculous.js?load=effects}" type="text/javascript"></script>-->
+    <script type="text/javascript" th:src="@{/statics/js/book/java.js}"></script>
+</head>
+<body>
+<div id="wrap">
+    <!--引入header-->
+    <div th:replace="book/common/header::header"></div>
+
+    <div class="center_content">
+        <!--左半部分-->
+        <div class="left_content">
+            <div class="crumb_nav">
+                <a href="index.html">首页</a> &gt;&gt; 书籍详情
+            </div>
+            <div class="title">
+                <span class="title_icon">
+                    <img th:src="@{/statics/images/book/bullet1.gif}" alt="" title=""/>
+                </span>
+                <span id="book-name">书籍名称</span>
+            </div>
+
+            <div class="feat_prod_box_details">
+
+                <div class="prod_img"><a href="details.html"><img id="detail-book-img" th:src="@{/statics/images/book/prod1.gif}" alt=""
+                                                                  title=""
+                                                                  border="0"/></a>
+                    <br/><br/>
+                    <a th:href="@{/statics/images/book/big_pic.jpg}" rel="lightbox" id="detail-book-icon">
+                        <img  th:src="@{/statics/images/book/zoom.gif}" alt="" title="" border="0" />
+                    </a>
+                </div>
+
+                <div class="prod_det_box">
+                    <div class="box_top"></div>
+                    <div class="box_center">
+                        <div class="prod_title">详情</div>
+                        <p class="details" id="book-detail">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. </p>
+                        <div class="price"><strong>作者:</strong> <span class="red" id="book-author">书籍作者</span></div>
+                        <div class="price"><strong>出版社:</strong> <span class="red" id="book-pub">出版社</span></div>
+                        <div class="price"><strong>类型:</strong> <span class="red" id="book-classes">书籍类型</span></div>
+                        <div class="price"><strong>库存:</strong> <span class="red" id="book-num">书籍库存</span></div>
+                        <a href="javascript:void(0)" class="more">
+                            <button id="borrow-book-btn" data-bookid="">借阅书籍</button>
+                        </a>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="box_bottom"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+
+            <div id="demo" class="demolayout">
+
+                <ul id="demo-nav" class="demolayout">
+                    <li><a class="active" href="#tab1">More details</a></li>
+                    <li><a class="" href="#tab2">Related books</a></li>
+                </ul>
+
+                <div class="tabs-container">
+
+                    <div style="display: block;" class="tab" id="tab1">
+                        <p class="more_details">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            exercitation.
+                        </p>
+                        <ul class="list">
+                            <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a></li>
+                            <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a></li>
+                            <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a></li>
+                            <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a></li>
+                        </ul>
+                        <p class="more_details">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            exercitation.
+                        </p>
+                    </div>
+
+                    <div style="display: none;" class="tab" id="tab2">
+                        <div class="new_prod_box">
+                            <a href="details.html">product name</a>
+                            <div class="new_prod_bg">
+                                <a href="details.html"><img th:src="@{/statics/images/book/thumb1.gif}" alt="" title=""
+                                                            class="thumb"
+                                                            border="0"/></a>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="clear"></div>
+        </div><!--end of left content-->
+        <!--引入右半部分-->
+        <div th:replace="book/common/right_content::right_content"></div>
+
+
+        <div class="clear"></div>
+    </div><!--end of center content-->
+
+    <!--引进footer-->
+    <div th:replace="book/common/footer::footer"></div>
+
+</div>
+<script th:src="@{/statics/js/common/jquery.min.js}"></script>
+<script th:src="@{/statics/js/common/jquery.cookie.js}"></script>
+<script th:src="@{/statics/js/common/layui/layui.all.js}"></script>
+<script th:src="@{/statics/js/book/right_content.js}"></script>
+<script th:src="@{/statics/js/book/detail.js}"></script>
+</body>
+<script type="text/javascript">
+
+    var tabber1 = new Yetii({
+        id: 'demo'
+    });
+
+</script>
+</html>

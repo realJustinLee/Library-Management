@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>注册</title>
+    <link th:href="@{/statics/css/root/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/statics/css/book/style.css}"/>
+    <link rel="stylesheet" th:href="@{/statics/css/login/register.css}" type="text/css"/>
+</head>
+<body>
+<div class="container">
+        <div class="row vertical-center-row">
+            <form>
+                <div id="loginarea" style="margin-top: 100px">
+                    <h6>用户注册</h6>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="image">
+                                <img th:src="@{/statics/images/login/loginavatar.png}" class="img-responsive img-rounded"/>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label for="register_username">用户名</label>
+                                <input type="text" class="form-control"  id="register_username" placeholder="用户名" />
+                            </div>
+                            <div class="form-group">
+                                <label for="register_nickname">昵称</label>
+                                <input type="text" class="form-control"  id="register_nickname" placeholder="昵称"  />
+                            </div>
+                            <div class="form-group">
+                                <label for="register_password">密码</label>
+                                <input type="password" class="form-control" id="register_password" placeholder="账号密码" />
+                            </div>
+                            <div class="form-group">
+                                <label for="register_phone">手机</label>
+                                <input type="text" class="form-control"  id="register_phone" placeholder="联系方式"  />
+                            </div>
+                            <div class="form-group">
+                                <label for="register_email">email</label>
+                                <input type="text" class="form-control" id="register_email"  placeholder="邮箱" />
+                            </div>
+                            <div class="form_row">
+                                <span class="terms">
+                                    <input type="checkbox" name="terms" id="terms" />
+                                </span>
+                                我同意 <a href="#">卖身条约</a>
+                            </div>
+                            <div class="col-sm-10"></div>
+                        <div class="col-sm-2">
+                    <input type="text" class="register" value="注册" id="register"/>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<!--引入js-->
+<script th:src="@{/statics/js/common/jquery.min.js}"></script>
+<script th:src="@{/statics/js/common/bootstrap.min.js}"></script>
+<script th:src="@{/statics/js/common/jquery.cookie.js}"></script>
+<script th:src="@{/statics/js/common/layui/layui.all.js}"></script>
+<script th:src="@{/statics/js/book/register.js}"></script>
+</body>
+</html>

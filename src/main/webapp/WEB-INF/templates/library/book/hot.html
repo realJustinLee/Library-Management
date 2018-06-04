@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>在线图书馆</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/statics/css/book/style.css}"/>
+</head>
+<body>
+<div id="wrap">
+
+    <!--引入header-->
+    <div th:replace="book/common/header::header"></div>
+
+    <div class="center_content">
+        <!--左半部分-->
+        <div class="left_content">
+            <div class="title">
+                <span class="title_icon">
+                    <img th:src="@{/statics/images/book/bullet1.gif}" alt="" title=""/>
+                </span>热门书籍
+            </div>
+            <div id="hot_book_list">
+                <div class="feat_prod_box">
+                    <div class="prod_img"><a href="details.html"><img th:src="@{/statics/images/book/prod1.gif}"/></a>
+                    </div>
+                    <div class="prod_det_box">
+                        <span class="special_icon"><img th:src="@{/statics/images/book/special_icon.gif}"/></span>
+                        <div class="box_top"></div>
+                        <div class="box_center">
+                            <div class="prod_title">Product name</div>
+                            <p class="details">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                nostrud
+                                exercitation.</p>
+                            <a href="details.html" class="more">- 更多详情 -</a>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="box_bottom"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="feat_prod_box">
+                    <div class="prod_img"><a href="details.html"><img th:src="@{/statics/images/book/prod1.gif}"/></a>
+                    </div>
+                    <div class="prod_det_box">
+                        <span class="special_icon"><img th:src="@{/statics/images/book/special_icon.gif}"/></span>
+                        <div class="box_top"></div>
+                        <div class="box_center">
+                            <div class="prod_title">Product name</div>
+                            <p class="details">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                nostrud
+                                exercitation.</p>
+                            <a href="details.html" class="more">- 更多详情 -</a>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="box_bottom"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+            <!--分页-->
+            <div class="pagination" id="pagination"></div>
+            <div class="clear"></div>
+        </div><!--end of left content-->
+        <!--引入右半部分-->
+        <div th:replace="book/common/right_content::right_content"></div>
+        <div class="clear"></div>
+    </div><!--end of center content-->
+
+
+    <!--引进footer-->
+    <div th:replace="book/common/footer::footer"></div>
+</div>
+
+<!--引入js-->
+<script th:src="@{/statics/js/common/jquery.min.js}"></script>
+<script th:src="@{/statics/js/common/jquery.cookie.js}"></script>
+<script th:src="@{/statics/js/common/jqPaginator.js}"></script>
+<script th:src="@{/statics/js/common/layui/layui.all.js}"></script>
+<script th:src="@{/statics/js/book/right_content.js}"></script>
+<script th:src="@{/statics/js/book/hot.js}"></script>
+</body>
+</html>

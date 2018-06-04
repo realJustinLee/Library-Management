@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body>
+<div th:fragment="right_content">
+    <div class="right_content">
+        <div class="languages_box">
+            <span>欢迎你，<strong id="logined-name"></strong></span>
+        </div>
+        <div class="currency">
+            <span class="red">上次登录: </span>
+            <a href="javascript:void(0);" class="selected" id="last-login"></a>&nbsp;&nbsp;&nbsp;
+            <span id="logout" style="cursor: pointer">退出登录</span>
+        </div>
+
+        <div class="cart">
+            <div class="title">
+                <span class="title_icon">
+                    <img th:src="@{/statics/images/book/cart.gif}" alt="" title=""/>
+                </span>
+                <span>所借书籍</span>
+            </div>
+            <div class="home_cart_content">
+                | <span class="red">TOTAL: <span id="user_borrow_book_num"></span></span>
+            </div>
+            <a href="/book/borrow" class="view_cart">查看详情</a>
+        </div>
+
+        <div class="title">
+            <span class="title_icon">
+                <img th:src="@{/statics/images/book/bullet3.gif}" alt="" title=""/>
+            </span>
+            <span>关于我们</span>
+        </div>
+        <div class="about">
+            <p>
+                <img th:src="@{/statics/images/book/about.gif}" alt="" title="" class="right"/>
+                话不多说，反正我们就是图书馆管理系统，爱用不用。
+            </p>
+
+        </div>
+
+        <div class="right_box">
+            <div class="title">
+                <span class="title_icon">
+                    <img th:src="@{/statics/images/book/bullet4.gif}" alt="" title=""/>
+                </span>
+                <span>最新热门</span>
+            </div>
+            <!--热门书籍-->
+            <div id="right_new_book_list"></div>
+        </div>
+
+        <!--最热作家-->
+        <div class="right_box">
+            <div class="title">
+                <span class="title_icon">
+                    <img th:src="@{/statics/images/book/bullet5.gif}" alt="" title=""/>
+                </span>
+                <span>热门作家</span>
+            </div>
+            <!--热门作家-->
+            <ul class="list" id="top_author_list"></ul>
+        </div>
+    </div><!--end of right content-->
+</div>
+</body>
+</html>

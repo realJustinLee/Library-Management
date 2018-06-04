@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>数据对接测试</title>
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/statics/css/common/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/statics/css/login/form-elements.css}" />
+</head>
+
+<body>
+<h2 id="topic">查询同学的选课情况：</h2>
+<button class="btn btn-info btn-sm" id="selectBtn">点我查询</button>
+<div id="claassList"></div>
+<!-- Javascript -->
+<script th:src="@{/statics/js/common/jquery.min.js}"></script>
+<script th:src="@{/statics/js/common/bootstrap.min.js}"></script>
+<script>
+    $(function () {
+        $("#selectBtn").click(function () {
+            $.ajax({
+                url:'/getInfo',
+                type:'GET', //GET
+                async:true,    //或false,是否异步
+                data:{
+                    name:'李明',
+                    id:14121896
+                },
+                dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                success:function(myJson){
+                    $("#topic").html(myJson.name+"同学选的课是: ");
+                    $("#selectBtn").hide();
+                    for(var i in myJson.class){
+                        $("#claassList").append("<p>"+myJson.class[i].className+"</p>");
+                    }
+                },
+                error:function(myJson){
+                    console.log('Json请求错误！')
+                }
+            });
+        });
+    });
+</script>
+</body>
+
+</html>

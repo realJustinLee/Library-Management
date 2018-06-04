@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>在线图书馆管理平台</title>
+
+    <link th:href="@{/statics/css/root/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/statics/css/root/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/statics/css/root/ionicons.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/statics/css/root/morris.css}" rel="stylesheet" type="text/css"/>
+  <!--  <link th:href="@{/statics/css/root/sb-admin-2.min.css}" rel="stylesheet" type="text/css"/>-->
+    <link th:href="@{/statics/css/root/jquery-jvectormap-1.2.2.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/statics/css/root/datepicker3.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/statics/css/root/daterangepicker-bs3.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/statics/css/root/iCheck/all.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/statics/css/root/style.css}" rel="stylesheet" type="text/css"/>
+    <!-- 引入自定义样式 -->
+    <link th:href="@{/statics/css/root/manage.css}" rel="stylesheet" type="text/css" />
+</head>
+<body class="skin-black">
+<header class="header">
+    <a href="manage.html" class="logo">
+        管理栏
+    </a>
+    <!-- 顶部静态固定菜单 -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- 切换全屏按钮 -->
+        <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+    </nav>
+</header>
+<div class="wrapper row-offcanvas row-offcanvas-left">
+    <!-- 左边固定导航条 -->
+    <aside class="left-side sidebar-offcanvas">
+        <section class="sidebar">
+            <div class="user-panel">
+                <!-- 登录头像 -->
+                <div class="pull-left image">
+                    <img th:src="@{/statics/images/root/26115.jpg}" class="img-circle" alt="User Image"/>
+                </div>
+                <!-- 登录个人信息 -->
+                <div class="pull-left info">
+                    <p>Hello,管理员</p>
+                    <a href="javascript:void(0)"><i class="fa fa-circle text-success"></i> Online</a>&nbsp;
+                    <span id="logout" style="cursor: pointer">退出</span>
+                </div>
+            </div>
+            <!-- 左侧固定菜单 -->
+            <ul class="sidebar-menu" >
+                <li  data-section="bookHeader-section" class="active">
+                    <a href="javascript:void(0)">
+                        <i class="fa fa-book"></i> <span>图书目录</span>
+                    </a>
+                </li>
+                <li  data-section="bookAddition-section" class="active">
+                    <a href="javascript:void(0)">
+                        <i class="fa fa-save"></i><span>增添图书</span>
+                    </a>
+                </li>
+                <li  data-section="modifyBook-section" class="active">
+                    <a href="javascript:void(0)">
+                        <i class="fa fa-adjust"></i> <span>图书修改</span>
+                    </a>
+                </li>
+               <!--用户管理-->
+                <li  data-section="user-section" class="active">
+                    <a href="javascript:void(0)">
+                        <i class="fa fa-users"></i> <span>用户管理</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </aside> <!-- /.left sidebar -->
+    <!-- 右边主体部分 -->
+    <aside class="right-side">
+        <!--导出图书目录-->
+        <section class="content" id="bookHeader-section">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel">
+                        <header class="panel-heading">
+                            <h4>图书目录</h4>
+                        </header>
+                        <!-- /input-group -->
+                        <div class="row">
+                        <div class="col-xs-12">
+                        <div class="col-xs-5 box-tools m-b-15">
+                            <div class="input-group">
+                                <form > <!--action="MainServlet/exportExcel"-->
+                                    <input type="button" class="btn btn-info btn-sm" id="report-book" value="导出书单" />
+                                </form>
+                            </div>
+                        </div>
+                           <div class="col-xs-7"> <div class="navbar-rignt">
+                                <div class="sidebar-search">
+                                    <div class="input-group custom-search-form">
+                                        <input type="text" class="form-control" placeholder="输入书本信息" id="book-search"/>
+                                        <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" id="bookSearch">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                                    </div>
+                                </div>
+                           </div>
+                           </div>
+                        </div>
+                        </div>
+                        <div class="panel-body table-responsive">
+
+                            <table class="table table-hover text-center">
+                                <tbody id="bookInformation">
+                                <tr>
+                                    <th>类别</th>
+                                    <th>书名</th>
+                                    <th>作者</th>
+                                    <th>出版信息</th>
+                                    <th>数量</th>
+                                    <th>借阅情况</th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div>
+            </div>
+                <div class="col-sm-7"></div>
+            <!--分页导航-->
+            <!--<div class="col-sm-5"><div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate"><ul class="pagination"><li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous"><a href="#">Previous</a></li><li class="paginate_button active" aria-controls="dataTables-example" tabindex="0"><a href="#">1</a></li><li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">2</a></li><li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">3</a></li><li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">4</a></li><li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">5</a></li><li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">6</a></li><li class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next"><a href="#">Next</a></li></ul></div></div>-->
+
+        </section>
+
+        <!-- Section  id=books_section    tables -->
+        <!--<section class="content" id="bookList-section">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel"></div>&lt;!&ndash; /.box &ndash;&gt;
+                </div>
+            </div>
+        </section>&lt;!&ndash; /. Section tables &ndash;&gt;-->
+        <!-- Section  id=bookaddition-section -->
+        <section class="content" id="bookAddition-section" style="display: none;">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            增添图书
+                        </header>
+                        <div class="panel-body">
+                            <form id="addForm" method="post" enctype="multipart/form-data" action="/root/api/addBook">  <!-- action="MainServlet/add"-->
+                                <div class="form-group">
+                                    <label for="Class">类别：</label>
+                                    <input type="text"  class="form-control" id="Class" placeholder="请输入类别" name="classes" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Bookname">书名：</label>
+                                    <input type="text"  class="form-control" id="Bookname" placeholder="请输入书名" name="bookname" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Author">作者：</label>
+                                    <input type="text"  class="form-control" id="Author" placeholder="请输入作者" name="author" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Info">出版信息：</label>
+                                    <input type="text" name="publicationInfo" class="form-control" id="Info" placeholder="请输入出版信息，出版社社和日期用“;”隔开" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Num">数量</label>
+                                    <input type="text" name="bookNum" id="Num" class="form-control" placeholder="请输入书本数量" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Descr">详细介绍</label>
+                                    <textarea class="form-control" rows="3" name="description" id="Descr" placeholder="请输入书本介绍"></textarea>
+                                </div>
+                                <input type="file" name="file" id="inputFile" class="btn btn-primary"/>&nbsp;&nbsp;<br/>
+                                <button type="submit" class="btn btn-info" id="submit-addBook">添加</button>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+        <!-- /. Section  administrate -->
+        <!-- Section Settings -->
+        <!-- /. Section  Settings -->
+
+        <!-- 修改个人信息模态对话框 -->
+        <section class="panel" id="modifyBook-section" style="display:none;">
+           <header>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="col-xs-5"></div>
+                    <div class="col-xs-7 navbar-right">
+                        <div class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="输入内容" id="modify-book"/>
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" id="searchBook">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           </header>
+            <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">图书修改</h4>
+                        </div>
+
+                        <div class="modal-body" id="modification">
+                           <!--显示待修改的书本的内容-->
+                            <form role="form" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="modifyClass">类别：</label>
+                                    <input type="text"  class="form-control" id="modifyClass" placeholder="请输入类别" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="modifyBookname">书名：</label>
+                                    <input type="text"  class="form-control" id="modifyBookname" placeholder="请输入书名" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="modifyAuthor">作者：</label>
+                                    <input type="text"  class="form-control" id="modifyAuthor" placeholder="请输入作者" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="modifyInfo">出版信息：</label>
+                                    <input type="text" class="form-control" id="modifyInfo" placeholder="请输入出版信息，出版社社和日期用“;”隔开" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="modifyNum">数量</label>
+                                    <input type="text"  id="modifyNum" class="form-control" placeholder="请输入书本数量" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="modifyDescr">详细介绍</label>
+                                    <textarea class="form-control" rows="3"   id="modifyDescr" placeholder="请输入书本介绍"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-primary" id="update-book-btn">确认</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </section>
+
+        <section class="content" id="user-section" style="display:none;">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel">
+                        <!-- /input-group -->
+                        <header class="panel-heading">
+                            <h4>用户管理</h4>
+                        </header>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="col-xs-5 box-tools m-b-15">
+                                    <div class="input-group">
+                                        <form>     <!-- action="MainServlet/exportExcel"-->
+                                            <input type="button" class="btn btn-info btn-sm" id="report-user" value="导出用户名单" />
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-xs-7 navbar-rignt">
+                                    <div class="sidebar-search">
+                                        <div class="input-group custom-search-form">
+                                            <input type="text" class="form-control" placeholder="输入用户ID或用户名" id="user-search"/>
+                                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" id="searchUser">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body table-responsive">
+
+                            <table class="table table-hover text-center">
+                                <tbody id="userInformation">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>用户名</th>
+                                    <th>昵称</th>
+                                    <th>E-mail</th>
+                                    <th>电话号码</th>
+                                    <th>借阅情况</th>
+                                    <th>设置权限</th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div>
+            </div>
+        </section>
+        <section class="content" id="userList-section" style="display: none;">
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1">
+                    <div id="frequencyChart" style="height: 480px;width: 800px">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="footer-main footer navbar-fixed-bottom">
+            Copyright &copy; 李欣，霍鹏宇，柳力，何维
+        </div>
+    </aside>
+</div><!-- ./wrapper -->
+<!-- jQuery 2.0.2 -->
+<script th:src="@{/statics/js/root/jquery.min.js}" type="text/javascript"></script>
+<!-- jQuery UI 1.10.3 -->
+<script th:src="@{/statics/js/root/jquery-ui-1.10.3.min.js}" type="text/javascript"></script>
+<!-- Bootstrap -->
+<script th:src="@{/statics/js/root/bootstrap.min.js}" type="text/javascript"></script>
+<!-- daterangepicker -->
+<script th:src="@{/statics/js/root/plugins/daterangepicker/daterangepicker.js}" type="text/javascript"></script>
+<script th:src="@{/statics/js/root/chart.js}" type="text/javascript"></script>
+<script th:src="@{/statics/js/root/plugins/iCheck/icheck.min.js}" type="text/javascript"></script>
+<!-- calendar -->
+<script th:src="@{/statics/js/root/plugins/fullcalendar/fullcalendar.js}" type="text/javascript"></script>
+<!-- Director App -->
+<script th:src="@{/statics/js/root/Director/app.js}" type="text/javascript"></script>
+<!-- Director dashboard demo (This is only for demo purposes) -->
+<script th:src="@{/statics/js/root/Director/dashboard.js}" type="text/javascript"></script>
+<!-- layer.js -->
+<script th:src="@{/statics/js/root/layui/layui.all.js}" type="text/javascript"></script>
+<!-- echarts.js -->
+<script th:src="@{/statics/js/root/echarts.min.js}" type="text/javascript"></script>
+<script th:src="@{/statics/js/common/jquery.cookie.js}" type="text/javascript"></script>
+<!-- manage.js -->
+<script th:src="@{/statics/js/root/manage.js}" type="text/javascript"></script>
+</body>
+</html>

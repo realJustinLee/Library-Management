@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body>
+<div th:fragment="header">
+    <div class="header" id="header">
+        <div class="logo">
+            <a href="index.html">
+                <img th:src="@{/statics/images/book/logo.gif}" alt="" title="" border="0"/>
+            </a>
+        </div>
+        <div id="menu">
+            <ul>
+                <li><a href="/book/index">首页</a></li>
+                <li><a href="/book/books">所有书籍</a></li>
+                <li><a href="/book/hot">最热书籍</a></li>
+                <li><a href="/book/account">我的账户</a></li>
+                <!--<li><a href="/book/register">注册</a></li>-->
+                <!--<li><a href="/book/details">详细</a></li>-->
+                <li><a href="/book/contact">联系我们</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
