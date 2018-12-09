@@ -1,9 +1,7 @@
 # 基本情况
 
-开发工具：IDEA
-服务器:tomcat
-前端：html5+css+js(Jquery)
-后端：java
+前端：BootCamp+JQuery 
+后端：Spring
 
 #技术栈
 （后）
